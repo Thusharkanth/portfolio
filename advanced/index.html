@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="advanced">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loganathan Thusharkanth - AI & Data Science Undergraduate and AI/ML Engineer Intern. Portfolio showcasing projects in LLMs, RAG, multi-agent systems, and data engineering.">
+    <meta name="keywords" content="AI Engineer, Machine Learning, Data Science, RAG, LangGraph, LangChain, Portfolio, Loganathan Thusharkanth">
+    <meta name="author" content="Loganathan Thusharkanth">
+
+    <meta property="og:title" content="Loganathan Thusharkanth | AI & Data Science Portfolio">
+    <meta property="og:description" content="AI & Data Science Undergraduate and AI/ML Engineer Intern. Experienced in LLMs, RAG, multi-agent systems, and AI pipeline design.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <title>Loganathan Thusharkanth | AI & Data Science Portfolio</title>
+</head>
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Scanline Overlay -->
+    <div class="scanline-overlay"></div>
+
+    <!-- Skip to content -->
+    <a href="#about" class="skip-link">Skip to main content</a>
+
+    <!-- ========== NAVBAR ========== -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar__inner">
+            <a href="#hero" class="navbar__logo">
+                <span class="navbar__logo-bracket">[</span>LT<span class="navbar__logo-bracket">]</span>
+            </a>
+            <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+                <span class="navbar__toggle-bar"></span>
+            </button>
+            <nav class="navbar__menu" id="nav-menu" role="navigation" aria-label="Main navigation">
+                <ul class="navbar__list">
+                    <li><a href="#about" class="navbar__link">About</a></li>
+                    <li><a href="#education" class="navbar__link">Education</a></li>
+                    <li><a href="#experience" class="navbar__link">Experience</a></li>
+                    <li><a href="#projects" class="navbar__link">Projects</a></li>
+                    <li><a href="#skills" class="navbar__link">Skills</a></li>
+                    <li><a href="#certificates" class="navbar__link">Certificates</a></li>
+                    <li><a href="#extracurricular" class="navbar__link">Activities</a></li>
+                    <li><a href="#contact" class="navbar__link navbar__link--cta">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- Theme Switch -->
+            <a href="../classic/index.html" class="theme-switch" title="Switch to Classic Mode">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <span>Classic</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero__bg-image"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__grid-bg"></div>
+        <div class="container hero__inner">
+            <div class="hero__content">
+                <div class="hero__terminal animate-on-scroll">
+                    <span class="terminal__prompt">&gt;</span>
+                    <span class="terminal__text">Initializing portfolio...</span>
+                    <span class="terminal__cursor">_</span>
+                </div>
+                <p class="hero__greeting animate-on-scroll">Hello, I'm</p>
+                <h1 class="hero__name animate-on-scroll" data-text="Loganathan Thusharkanth">
+                    <span class="glitch-text">Loganathan</span><br>
+                    <span class="glitch-text">Thusharkanth</span>
+                </h1>
+                <p class="hero__title animate-on-scroll">
+                    <span class="typed-prefix">&lt;</span>
+                    AI &amp; Data Science Undergraduate | AI/ML Engineer Intern
+                    <span class="typed-prefix"> /&gt;</span>
+                </p>
+                <p class="hero__tagline animate-on-scroll">
+                    Building intelligent systems using LLMs, RAG, and multi-agent architectures.
+                    Passionate about applying AI to solve real-world problems with scalable, practical solutions.
+                </p>
+                <div class="hero__actions animate-on-scroll">
+                    <a href="assets/Loganathan_Thusharkanth_CV.pdf" download class="btn btn--primary btn--glow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download CV
+                    </a>
+                    <a href="#contact" class="btn btn--outline btn--glow">Contact Me</a>
+                </div>
+                <div class="hero__socials animate-on-scroll">
+                    <a href="https://github.com/Thusharkanth" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/loganathan-thusharkanth" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="mailto:thusharkanth2002@gmail.com" aria-label="Email">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </a>
+                    <a href="tel:+94774954546" aria-label="Phone">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                </div>
+                <div class="hero__status animate-on-scroll">
+                    <span class="status-dot"></span>
+                    <span>SYSTEM ONLINE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+    <!-- ========== ABOUT ========== -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> About Me
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+            <div class="about__content animate-on-scroll">
+                <div class="about__card glass-card">
+                    <div class="about__card-corner about__card-corner--tl"></div>
+                    <div class="about__card-corner about__card-corner--tr"></div>
+                    <div class="about__card-corner about__card-corner--bl"></div>
+                    <div class="about__card-corner about__card-corner--br"></div>
+                    <p class="about__text">
+                        AI &amp; Data Science undergraduate focused on building intelligent systems using LLMs, Retrieval-Augmented Generation (RAG), and multi-agent architectures. Experienced in designing AI pipelines, vector-based retrieval systems, tool-calling workflows, and API-driven automation. Skilled in Python, model integration, and system-level AI design using frameworks such as LangGraph and LangChain. Passionate about applying AI to solve real-world problems by building scalable, practical solutions rather than just training models.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION ========== -->
+    <section class="section section--alt" id="education">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> Education
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+            <div class="timeline">
+                <div class="timeline__item animate-on-scroll">
+                    <div class="timeline__dot">
+                        <span class="timeline__dot-ping"></span>
+                    </div>
+                    <div class="timeline__content glass-card">
+                        <span class="timeline__date">2023 (Sep) – Present</span>
+                        <h3 class="timeline__title">BSc (Hons) Artificial Intelligence &amp; Data Science</h3>
+                        <p class="timeline__subtitle">Informatics Institute of Technology (IIT) — Robert Gordon University, Scotland, UK</p>
+                        <div class="timeline__grades">
+                            <h4 class="timeline__grades-heading">&gt; Year_01</h4>
+                            <div class="grades-grid">
+                                <span class="grade-item"><strong>A</strong> Programming Fundamentals</span>
+                                <span class="grade-item"><strong>B</strong> Database Systems</span>
+                                <span class="grade-item"><strong>B</strong> Computer System Fundamentals</span>
+                                <span class="grade-item"><strong>B</strong> English Communication Skills</span>
+                                <span class="grade-item"><strong>B</strong> Data Structures &amp; Algorithms for AI</span>
+                                <span class="grade-item"><strong>B</strong> Web Technology</span>
+                                <span class="grade-item"><strong>C</strong> Computational Mathematics</span>
+                            </div>
+                            <h4 class="timeline__grades-heading">&gt; Year_02</h4>
+                            <div class="grades-grid">
+                                <span class="grade-item"><strong>A</strong> Machine Learning</span>
+                                <span class="grade-item"><strong>B</strong> Advanced Mathematics</span>
+                                <span class="grade-item"><strong>C</strong> Object-Oriented Development</span>
+                                <span class="grade-item"><strong>C</strong> Data Engineering</span>
+                                <span class="grade-item"><strong>C</strong> Simulation &amp; Modeling Techniques</span>
+                                <span class="grade-item"><strong>C</strong> Data Science Group Project</span>
+                                <span class="grade-item"><strong>D</strong> Artificial Intelligence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline__item animate-on-scroll">
+                    <div class="timeline__dot"><span class="timeline__dot-ping"></span></div>
+                    <div class="timeline__content glass-card">
+                        <span class="timeline__date">2022 (2023)</span>
+                        <h3 class="timeline__title">G.C.E Advanced Level — Physical Science</h3>
+                        <p class="timeline__subtitle">Badulla Central (BMMV)</p>
+                        <p class="timeline__detail">Combined Mathematics stream — Passed all 3 subjects with 1B 2S</p>
+                    </div>
+                </div>
+
+                <div class="timeline__item animate-on-scroll">
+                    <div class="timeline__dot"><span class="timeline__dot-ping"></span></div>
+                    <div class="timeline__content glass-card">
+                        <span class="timeline__date">2018</span>
+                        <h3 class="timeline__title">G.C.E Ordinary Level</h3>
+                        <p class="timeline__subtitle">Sussex College, Badulla</p>
+                        <p class="timeline__detail">Passed all 9 subjects — 3A 1B 5C</p>
+                    </div>
+                </div>
+
+                <div class="timeline__item animate-on-scroll">
+                    <div class="timeline__dot"><span class="timeline__dot-ping"></span></div>
+                    <div class="timeline__content glass-card">
+                        <span class="timeline__date">2019</span>
+                        <h3 class="timeline__title">Diploma in Software Engineering (DISE)</h3>
+                        <p class="timeline__subtitle">Esoft Metro Campus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXPERIENCE ========== -->
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> Experience
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+            <div class="experience__card glass-card animate-on-scroll">
+                <div class="experience__header">
+                    <div>
+                        <h3 class="experience__role">AI / ML Engineer Intern</h3>
+                        <p class="experience__company">MintHRM — Colombo, Sri Lanka</p>
+                    </div>
+                    <span class="experience__date">Sep 2025 – Present</span>
+                </div>
+                <ul class="experience__list">
+                    <li>Designed and implemented a RAG-based HR chatbot pipeline, integrating document ingestion (Docling), advanced chunking, embedding generation, vector database, and hybrid retrieval strategies.</li>
+                    <li>Researched, architected, and developed a LangGraph-based multi-agent system (POC) featuring supervisor-agent orchestration, specialized sub-agents, structured graph workflows (nodes/edges), tool routing, session-based memory, and human-in-the-loop interaction checkpoints.</li>
+                    <li>Engineered tool-calling and function-calling pipelines, enabling controlled LLM task delegation, external API integrations, and deterministic workflow execution.</li>
+                    <li>Integrated and evaluated open-source LLMs (LLaMA 3, Qwen via Ollama), applying prompt engineering and tool-selection refinement for improved reliability.</li>
+                    <li>Built and exposed backend services using APIs, containerized components with Docker, and extended workflows with multimodal capabilities (OCR, Speech-to-Text, Text-to-Speech).</li>
+                    <li>Produced technical documentation and presented the multi-agent architecture POC to internal stakeholders.</li>
+                </ul>
+                <div class="experience__tags">
+                    <span class="tag">RAG</span>
+                    <span class="tag">LangGraph</span>
+                    <span class="tag">LangChain</span>
+                    <span class="tag">LLMs</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Multi-Agent Systems</span>
+                    <span class="tag">Vector Database</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section class="section section--alt" id="projects">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> Projects
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+
+            <div class="projects__filters animate-on-scroll">
+                <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai-ml">AI / ML</button>
+                <button class="filter-btn" data-filter="data">Data Engineering</button>
+                <button class="filter-btn" data-filter="software">Software Dev</button>
+            </div>
+
+            <div class="projects__grid">
+                <!-- LawBot -->
+                <article class="project-card glass-card animate-on-scroll" data-category="ai-ml">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--active"></span> Active</span>
+                        <span class="project-card__year">2026 – Present</span>
+                    </div>
+                    <h3 class="project-card__title">LawBot — AI Legal Assistant</h3>
+                    <p class="project-card__desc">AI-powered legal assistant in R&amp;D phase, focused on improving public access to Sri Lankan law through a conversational interface. Architected using RAG with hybrid search and structured legal knowledge modeling.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">RAG</span>
+                        <span class="tag tag--sm">Hybrid Search</span>
+                        <span class="tag tag--sm">LLM</span>
+                        <span class="tag tag--sm">Vector Database</span>
+                    </div>
+                </article>
+
+                <!-- Edge AI Arrhythmia -->
+                <article class="project-card glass-card animate-on-scroll" data-category="ai-ml">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--active"></span> Active</span>
+                        <span class="project-card__year">2026 – Present</span>
+                    </div>
+                    <h3 class="project-card__title">Edge AI-Based Real-Time Arrhythmia Detection</h3>
+                    <p class="project-card__desc">Designing a real-time, edge-deployable arrhythmia detection system using ECG signals. Implementing heartbeat segmentation, feature engineering, and supervised ML with planned Raspberry Pi deployment.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">ECG Signal Processing</span>
+                        <span class="tag tag--sm">Edge AI</span>
+                        <span class="tag tag--sm">Supervised ML</span>
+                        <span class="tag tag--sm">Embedded Systems</span>
+                    </div>
+                </article>
+
+                <!-- CCRMS -->
+                <article class="project-card glass-card animate-on-scroll" data-category="ai-ml">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2025</span>
+                    </div>
+                    <h3 class="project-card__title">Comprehensive Chemical Risk Management System</h3>
+                    <p class="project-card__desc">Developed a Neural Network model (95% accuracy) for predicting future chemical risks. Managed backend in Python and integrated with a React frontend via REST API.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">HTML/CSS/JS</span>
+                        <span class="tag tag--sm">Python</span>
+                        <span class="tag tag--sm">Machine Learning</span>
+                        <span class="tag tag--sm">Neural Networks</span>
+                    </div>
+                </article>
+
+                <!-- TechExpo -->
+                <article class="project-card glass-card animate-on-scroll" data-category="software">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2025</span>
+                    </div>
+                    <h3 class="project-card__title">TechExpo Management System</h3>
+                    <p class="project-card__desc">Built a Python and JavaFX event management system handling registrations, updates, project spotlighting, and award tracking with interactive GUI and visualizations.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">Python</span>
+                        <span class="tag tag--sm">Java</span>
+                        <span class="tag tag--sm">JavaFX</span>
+                        <span class="tag tag--sm">SceneBuilder</span>
+                    </div>
+                </article>
+
+                <!-- Fuzzy Logic -->
+                <article class="project-card glass-card animate-on-scroll" data-category="ai-ml">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2025</span>
+                    </div>
+                    <h3 class="project-card__title">Fuzzy Logic-Based Anomaly Detection in Smart Grids</h3>
+                    <p class="project-card__desc">Built a custom Python fuzzy logic system to detect voltage, frequency, and load anomalies, with manual modules and simulations ensuring accurate, real-time decision-making.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">Python</span>
+                        <span class="tag tag--sm">Fuzzy Logic</span>
+                        <span class="tag tag--sm">Rule-Based Reasoning</span>
+                        <span class="tag tag--sm">Simulation</span>
+                    </div>
+                </article>
+
+                <!-- Weather ETL -->
+                <article class="project-card glass-card animate-on-scroll" data-category="data">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2025</span>
+                    </div>
+                    <h3 class="project-card__title">Weather Data ETL Pipeline</h3>
+                    <p class="project-card__desc">Developed an automated hourly ETL pipeline using Python and Airflow to fetch, transform, and store real-time weather data in AWS S3 with reliable, timestamped processing.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">Python</span>
+                        <span class="tag tag--sm">Apache Airflow</span>
+                        <span class="tag tag--sm">AWS EC2/S3</span>
+                        <span class="tag tag--sm">OpenWeatherMap API</span>
+                    </div>
+                </article>
+
+                <!-- Bank Queuing -->
+                <article class="project-card glass-card animate-on-scroll" data-category="data">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2025</span>
+                    </div>
+                    <h3 class="project-card__title">Bank Customer Queuing System Simulation</h3>
+                    <p class="project-card__desc">Simulated an 8-hour bank queuing system in R using probabilistic models to analyze wait times, server utilization, and impact of adding service counters.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">R</span>
+                        <span class="tag tag--sm">Queueing Theory</span>
+                        <span class="tag tag--sm">Probabilistic Modeling</span>
+                        <span class="tag tag--sm">Data Visualization</span>
+                    </div>
+                </article>
+
+                <!-- News Recommendation -->
+                <article class="project-card glass-card animate-on-scroll" data-category="software">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2024</span>
+                    </div>
+                    <h3 class="project-card__title">Personalized News Recommendation System</h3>
+                    <p class="project-card__desc">Built a JavaFX + MongoDB system with NLP (Stanford) for article categorization, multi-user support via concurrency/multithreading, and OOP-based design.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">JavaFX</span>
+                        <span class="tag tag--sm">MongoDB</span>
+                        <span class="tag tag--sm">NLP (Stanford)</span>
+                        <span class="tag tag--sm">Concurrency</span>
+                    </div>
+                </article>
+
+                <!-- Bank Marketing -->
+                <article class="project-card glass-card animate-on-scroll" data-category="ai-ml">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2024</span>
+                    </div>
+                    <h3 class="project-card__title">Bank Marketing Classification System</h3>
+                    <p class="project-card__desc">Built ML models on the Bank Marketing dataset (41,188 records, 21 features), achieving 91.81% accuracy with Random Forest and 89.62% with Neural Networks.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">Python</span>
+                        <span class="tag tag--sm">Random Forest</span>
+                        <span class="tag tag--sm">Neural Networks</span>
+                        <span class="tag tag--sm">TensorFlow</span>
+                    </div>
+                </article>
+
+                <!-- Builders Citadel -->
+                <article class="project-card glass-card animate-on-scroll" data-category="data">
+                    <div class="project-card__header">
+                        <span class="project-card__status"><span class="status-dot status-dot--done"></span> Completed</span>
+                        <span class="project-card__year">2024</span>
+                    </div>
+                    <h3 class="project-card__title">Builders Citadel — Database Management System</h3>
+                    <p class="project-card__desc">Developed a database management system to manage project data using MySQL. Designed with ER diagram and relational schema with full SQL implementation.</p>
+                    <div class="project-card__tags">
+                        <span class="tag tag--sm">MySQL</span>
+                        <span class="tag tag--sm">ER Diagrams</span>
+                        <span class="tag tag--sm">SQL</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> Technical Skills
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+            <div class="skills__grid">
+                <div class="skill-category glass-card animate-on-scroll">
+                    <div class="skill-category__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3 class="skill-category__title">Programming Languages</h3>
+                    <div class="skill-category__tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">R</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card animate-on-scroll">
+                    <div class="skill-category__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/><circle cx="12" cy="15" r="2"/></svg>
+                    </div>
+                    <h3 class="skill-category__title">AI &amp; Machine Learning</h3>
+                    <div class="skill-category__tags">
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">Tool/Function Calling</span>
+                        <span class="skill-tag">Model Integration</span>
+                        <span class="skill-tag">Agentic AI</span>
+                        <span class="skill-tag">AI Automation</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">XGBoost</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card animate-on-scroll">
+                    <div class="skill-category__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3 class="skill-category__title">Web Development</h3>
+                    <div class="skill-category__tags">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card animate-on-scroll">
+                    <div class="skill-category__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                    </div>
+                    <h3 class="skill-category__title">Cloud &amp; Deployment</h3>
+                    <div class="skill-category__tags">
+                        <span class="skill-tag">AWS EC2</span>
+                        <span class="skill-tag">AWS RDS</span>
+                        <span class="skill-tag">AWS S3</span>
+                        <span class="skill-tag">AWS Lambda</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card animate-on-scroll">
+                    <div class="skill-category__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                    </div>
+                    <h3 class="skill-category__title">Databases</h3>
+                    <div class="skill-category__tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card animate-on-scroll">
+                    <div class="skill-category__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h3 class="skill-category__title">Tools &amp; Platforms</h3>
+                    <div class="skill-category__tags">
+                        <span class="skill-tag">Google Colab</span>
+                        <span class="skill-tag">PyCharm</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Arduino IDE</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card animate-on-scroll">
+                    <div class="skill-category__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </div>
+                    <h3 class="skill-category__title">Data Visualization</h3>
+                    <div class="skill-category__tags">
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CERTIFICATES ========== -->
+    <section class="section section--alt" id="certificates">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> Certificates &amp; Memberships
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+            <div class="certs__grid">
+                <div class="cert-card glass-card animate-on-scroll">
+                    <div class="cert-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h3 class="cert-card__title">IEEE Member</h3>
+                    <p class="cert-card__org">Institute of Electrical and Electronics Engineers</p>
+                    <span class="cert-card__year">2025</span>
+                </div>
+                <div class="cert-card glass-card animate-on-scroll">
+                    <div class="cert-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                    <h3 class="cert-card__title">IEEE Robotics and Automation Society (RAS)</h3>
+                    <p class="cert-card__org">IEEE RAS</p>
+                    <span class="cert-card__year">2025</span>
+                </div>
+                <div class="cert-card glass-card animate-on-scroll">
+                    <div class="cert-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3 class="cert-card__title">Learning Arduino: Foundations</h3>
+                    <p class="cert-card__org">LinkedIn Learning — Zara Khalil</p>
+                    <span class="cert-card__year">2025</span>
+                </div>
+                <div class="cert-card glass-card animate-on-scroll">
+                    <div class="cert-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3 class="cert-card__title">Machine Learning with Python: Foundations</h3>
+                    <p class="cert-card__org">LinkedIn Learning — Frederick Nwanganga</p>
+                    <span class="cert-card__year">2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXTRACURRICULAR ========== -->
+    <section class="section" id="extracurricular">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> Extracurricular Activities
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+            <div class="activities__grid">
+                <div class="activity-card glass-card animate-on-scroll">
+                    <div class="activity-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3 class="activity-card__title">Volunteer — IIT Pongal 2025</h3>
+                    <p class="activity-card__desc">Assisted in organizing logistics and contributed to the decoration of the Narunthingal cultural event, helping execute a successful celebration.</p>
+                    <span class="activity-card__year">2025</span>
+                </div>
+                <div class="activity-card glass-card animate-on-scroll">
+                    <div class="activity-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 class="activity-card__title">Chairperson — Tamil Literary Association</h3>
+                    <p class="activity-card__desc">Served as the founding chairperson at Sussex College, Badulla, leading events and initiatives to promote Tamil language and literature.</p>
+                    <span class="activity-card__year">2018</span>
+                </div>
+                <div class="activity-card glass-card animate-on-scroll">
+                    <div class="activity-card__icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <h3 class="activity-card__title">Captain — Cricket &amp; Volleyball Teams</h3>
+                    <p class="activity-card__desc">Led both the cricket and volleyball teams at Sussex College, Badulla, representing the school in district, zonal, inter-Sussex, and inter-school competitions with top placements.</p>
+                    <span class="activity-card__year">2017 – 2018</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section section--alt" id="contact">
+        <div class="container">
+            <h2 class="section__title animate-on-scroll">
+                <span class="section__title-decorator">//</span> Get In Touch
+            </h2>
+            <div class="section__divider animate-on-scroll"></div>
+            <div class="contact__inner">
+                <div class="contact__info animate-on-scroll">
+                    <p class="contact__text">I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hello, feel free to reach out!</p>
+                    <div class="contact__details">
+                        <div class="contact__item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <a href="mailto:thusharkanth2002@gmail.com">thusharkanth2002@gmail.com</a>
+                        </div>
+                        <div class="contact__item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <a href="tel:+94774954546">(+94) 77 495 4546</a>
+                        </div>
+                        <div class="contact__item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>64/5 B 2/1 Peersaibo Street, Colombo 12, Sri Lanka</span>
+                        </div>
+                    </div>
+                    <div class="contact__socials">
+                        <a href="https://github.com/Thusharkanth" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/loganathan-thusharkanth" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact__form glass-card animate-on-scroll" id="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">&gt; Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="Your name" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">&gt; Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">&gt; Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" required placeholder="Project Inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">&gt; Message</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" required rows="5" placeholder="Your message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--glow btn--full">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Send Message
+                    </button>
+                    <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <span class="footer__logo">[LT]</span>
+                    <p class="footer__tagline">AI &amp; Data Science Professional</p>
+                </div>
+                <nav class="footer__links" aria-label="Footer navigation">
+                    <a href="#about">About</a>
+                    <a href="#education">Education</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <div class="footer__socials">
+                    <a href="https://github.com/Thusharkanth" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/loganathan-thusharkanth" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="mailto:thusharkanth2002@gmail.com" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Loganathan Thusharkanth. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
