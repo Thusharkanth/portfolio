@@ -479,7 +479,9 @@ ul { list-style: none; }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 620px;
+    max-width: 580px;
+    margin-left: 120px;
+    margin-right: auto;
     position: relative;
     z-index: 3;
     padding: 60px 0;
