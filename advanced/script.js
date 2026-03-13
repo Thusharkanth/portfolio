@@ -297,7 +297,7 @@ function initContactForm() {
 
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const name = form.querySelector('#name').value.trim();
@@ -311,13 +311,36 @@ function initContactForm() {
             return;
         }
 
-        const mailtoLink = `mailto:thusharkanth2002@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
-        window.location.href = mailtoLink;
+        // Disable button while sending
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        statusEl.textContent = '> Transmitting message...';
+        statusEl.className = 'form-status';
 
-        statusEl.textContent = '> SUCCESS: Opening email client...';
-        statusEl.className = 'form-status form-status--success';
+        try {
+            const formData = new FormData(form);
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
 
-        form.reset();
+            if (data.success) {
+                statusEl.textContent = '> SUCCESS: Message sent successfully!';
+                statusEl.className = 'form-status form-status--success';
+                form.reset();
+            } else {
+                statusEl.textContent = '> ERROR: ' + (data.message || 'Something went wrong.');
+                statusEl.className = 'form-status form-status--error';
+            }
+        } catch (error) {
+            statusEl.textContent = '> ERROR: Network error. Please try again.';
+            statusEl.className = 'form-status form-status--error';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+        }
     });
 }
 
