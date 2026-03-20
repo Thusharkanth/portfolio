@@ -330,15 +330,15 @@
     <div class="zyron-overlay" id="zyron-overlay">
         <div class="zyron-text" id="zyron-text"></div>
         <div class="choices" id="choices">
-            <a class="choice-btn choice-btn--classic" id="btn-classic" href="classic/index.html">
-                <span class="choice-btn__icon">◆</span>
-                <span class="choice-btn__title">PROFESSIONAL</span>
-                <span class="choice-btn__desc">Classic / Corporate</span>
-            </a>
             <a class="choice-btn choice-btn--advanced" id="btn-advanced" href="advanced/index.html">
                 <span class="choice-btn__icon">⚡</span>
                 <span class="choice-btn__title">ADVANCED</span>
                 <span class="choice-btn__desc">Cyberpunk / AI Theme</span>
+            </a>
+            <a class="choice-btn choice-btn--classic" id="btn-classic" href="classic/index.html">
+                <span class="choice-btn__icon">◆</span>
+                <span class="choice-btn__title">PROFESSIONAL</span>
+                <span class="choice-btn__desc">Classic / Corporate</span>
             </a>
         </div>
     </div>
@@ -970,15 +970,15 @@
             await speakAndType("You may experience my master's portfolio in two ways:", null);
             await delay(500);
 
-            // Line 4: Professional view — show classic button when "Professional" is spoken
-            const line4promise = speak("a Professional view, or an Advanced Cyberpunk view.");
-            const type4promise = typeText("a Professional view, or an Advanced Cyberpunk view.", ["Professional", "Advanced Cyberpunk"]);
-            // Show Professional button after a short delay (when the word is being said)
+            // Line 4: Advanced first, then Professional — buttons appear synced to speech
+            const line4promise = speak("an Advanced Cyberpunk view, or a Professional view.");
+            const type4promise = typeText("an Advanced Cyberpunk view, or a Professional view.", ["Advanced Cyberpunk", "Professional"]);
+            // Show Advanced button when "Advanced Cyberpunk" is being said
             await delay(600);
-            btnClassic.classList.add('visible');
-            // Show Advanced button when "Advanced Cyberpunk" part is reached
-            await delay(1800);
             btnAdvanced.classList.add('visible');
+            // Show Professional button when "Professional" part is reached
+            await delay(1800);
+            btnClassic.classList.add('visible');
             await Promise.all([line4promise, type4promise]);
             await delay(500);
 
@@ -1010,7 +1010,7 @@
                 { text: "Welcome to my master Thusharkanth's portfolio.", highlights: ["Thusharkanth"] },
                 { text: "I am ZYRON.", highlights: ["ZYRON"] },
                 { text: "You may experience my master's portfolio in two ways:", highlights: null },
-                { text: "a Professional view, or an Advanced Cyberpunk view.", highlights: ["Professional", "Advanced Cyberpunk"] },
+                { text: "an Advanced Cyberpunk view, or a Professional view.", highlights: ["Advanced Cyberpunk", "Professional"] },
                 { text: "Which shall we begin with?", highlights: null }
             ];
 
