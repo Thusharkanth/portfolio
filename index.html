@@ -1,7 +1,1068 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=advanced/index.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loganathan Thusharkanth — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #060b18;
+            color: #fff;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            user-select: none;
+        }
+
+        /* ── Zyron Canvas ── */
+        #zyronCanvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* ── Orb Click Hint ── */
+        .orb-hint {
+            position: fixed;
+            z-index: 20;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, 80px);
+            color: #4a9eff;
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0;
+            animation: hintFadeIn 2s ease 1.5s forwards, hintPulse 2.5s ease-in-out 3.5s infinite;
+            pointer-events: none;
+            text-shadow: 0 0 10px #4a9eff80, 0 0 20px #4a9eff40;
+        }
+        .orb-hint span {
+            display: block;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 10px;
+            margin-top: 6px;
+            text-shadow: 0 0 12px #4a9eff, 0 0 25px #4a9eff60;
+        }
+        .orb-hint.hidden { opacity: 0 !important; animation: none; }
+
+        /* Whole page is clickable before sequence starts */
+        .click-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 15;
+            cursor: pointer;
+        }
+        .click-layer.hidden { display: none; }
+
+        @keyframes hintFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 0.85; }
+        }
+        @keyframes hintPulse {
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ── Content Overlay (text + buttons over the animation) ── */
+        .zyron-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+        }
+        .zyron-overlay.active { opacity: 1; pointer-events: all; }
+
+        /* ── Typed Text ── */
+        .zyron-text {
+            text-align: center;
+            min-height: 100px;
+            max-width: 700px;
+            padding: 0 24px;
+        }
+        .zyron-line {
+            font-size: 18px;
+            color: #c8d6e5;
+            line-height: 2;
+            letter-spacing: 1.5px;
+        }
+        .zyron-line .highlight {
+            color: #4a9eff;
+            font-weight: 700;
+            text-shadow: 0 0 20px #4a9eff44;
+        }
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: #4a9eff;
+            margin-left: 3px;
+            vertical-align: text-bottom;
+            animation: cursor-blink 0.7s step-end infinite;
+        }
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ── Choice Buttons ── */
+        .choices {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .choice-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 40px;
+            border-radius: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            min-width: 210px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.35s, box-shadow 0.35s, background 0.35s;
+            pointer-events: none;
+        }
+        .choice-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .choice-btn:hover::before { opacity: 1; }
+
+        .choice-btn--advanced {
+            background: #4a9eff0d;
+            border: 1px solid #4a9eff33;
+        }
+        .choice-btn--advanced::before {
+            background: radial-gradient(ellipse at center, #4a9eff15 0%, transparent 70%);
+        }
+        .choice-btn--advanced:hover {
+            border-color: #4a9eff;
+            box-shadow: 0 0 40px #4a9eff33, inset 0 0 30px #4a9eff0d;
+            transform: translateY(-6px);
+        }
+
+        .choice-btn--classic {
+            background: #ffffff06;
+            border: 1px solid #ffffff1a;
+        }
+        .choice-btn--classic::before {
+            background: radial-gradient(ellipse at center, #ffffff0a 0%, transparent 70%);
+        }
+        .choice-btn--classic:hover {
+            border-color: #ffffff55;
+            box-shadow: 0 0 40px #ffffff11, inset 0 0 30px #ffffff08;
+            transform: translateY(-6px);
+        }
+
+        .choice-btn__icon { font-size: 28px; margin-bottom: 10px; }
+        .choice-btn__title { font-size: 15px; font-weight: 700; letter-spacing: 2px; margin-bottom: 5px; }
+        .choice-btn--advanced .choice-btn__title { color: #4a9eff; }
+        .choice-btn--classic .choice-btn__title { color: #e2e8f0; }
+        .choice-btn__desc { font-size: 11px; color: #666; letter-spacing: 1px; }
+
+        /* ── Skip Intro ── */
+        .skip-intro {
+            position: fixed;
+            bottom: 20px;
+            right: 24px;
+            z-index: 30;
+            color: #ffffff22;
+            font-size: 11px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            transition: color 0.3s;
+        }
+        .skip-intro:hover { color: #ffffff66; }
+
+        /* ── ZYRON text overlay (from your animation) ── */
+        .zyron-name-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .zyron-name-overlay.active { opacity: 1; }
+
+        .zyron-name-text {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 0.4em;
+            color: #4a9eff;
+            text-shadow:
+                0 0 10px #4a9eff,
+                0 0 20px #4a9eff,
+                0 0 40px #4a9eff80,
+                0 0 80px #4a9eff40,
+                0 0 120px #4a9eff20;
+            opacity: 0;
+        }
+        .zyron-name-text.reveal {
+            animation: textReveal 2s ease-out forwards;
+        }
+        .zyron-name-text span {
+            display: inline-block;
+            opacity: 0;
+        }
+        .zyron-name-text.reveal span {
+            animation: glitchLetter 0.15s ease-out forwards;
+            animation-delay: calc(var(--i, 0) * 0.12s);
+        }
+        .zyron-name-text span:nth-child(1) { --i: 0; }
+        .zyron-name-text span:nth-child(2) { --i: 1; }
+        .zyron-name-text span:nth-child(3) { --i: 2; }
+        .zyron-name-text span:nth-child(4) { --i: 3; }
+        .zyron-name-text span:nth-child(5) { --i: 4; }
+
+        .zyron-subtitle {
+            font-size: clamp(0.6rem, 1.5vw, 0.9rem);
+            letter-spacing: 0.8em;
+            color: #4a9eff;
+            text-shadow: 0 0 10px #4a9eff80, 0 0 30px #4a9eff40;
+            opacity: 0;
+            margin-top: 0.8rem;
+        }
+        .zyron-subtitle.reveal {
+            animation: subtitleFade 1.5s ease-out 1s forwards;
+        }
+
+        .zyron-name-text.revealed {
+            animation: glitchPulse 4s infinite;
+        }
+
+        @keyframes textReveal {
+            0% { opacity: 0; filter: blur(8px); }
+            30% { opacity: 1; filter: blur(0); }
+            35% { opacity: 0.3; transform: translateX(-3px); filter: blur(2px); }
+            40% { opacity: 1; transform: translateX(2px); filter: blur(0); }
+            45% { opacity: 0.7; transform: translateX(-1px); }
+            50%, 100% { opacity: 1; transform: translateX(0); filter: blur(0); }
+        }
+        @keyframes glitchLetter {
+            0% { opacity: 0; transform: translateY(-20px) scaleY(1.5); filter: blur(4px); }
+            50% { opacity: 0.5; transform: translateY(5px) scaleY(0.8); filter: blur(1px); color: #7ab8ff; }
+            100% { opacity: 1; transform: translateY(0) scaleY(1); filter: blur(0); color: #4a9eff; }
+        }
+        @keyframes subtitleFade {
+            0% { opacity: 0; letter-spacing: 1.5em; }
+            100% { opacity: 0.8; letter-spacing: 0.8em; }
+        }
+        @keyframes glitchPulse {
+            0%, 100% { text-shadow: 0 0 10px #4a9eff, 0 0 20px #4a9eff, 0 0 40px #4a9eff80, 0 0 80px #4a9eff40; }
+            48% { text-shadow: 0 0 10px #4a9eff, 0 0 20px #4a9eff, 0 0 40px #4a9eff80, 0 0 80px #4a9eff40; }
+            50% { text-shadow: -2px 0 #7ab8ff, 2px 0 #4a9eff40, 0 0 10px #4a9eff, 0 0 40px #4a9eff80; transform: translateX(-1px); }
+            52% { text-shadow: 2px 0 #4a9eff40, -2px 0 #7ab8ff, 0 0 10px #4a9eff, 0 0 40px #4a9eff80; transform: translateX(1px); }
+            54% { text-shadow: 0 0 10px #4a9eff, 0 0 20px #4a9eff, 0 0 40px #4a9eff80, 0 0 80px #4a9eff40; transform: translateX(0); }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .zyron-line { font-size: 14px; }
+            .choices { flex-direction: column; gap: 16px; }
+            .choice-btn { min-width: 190px; padding: 20px 30px; }
+            .click-prompt__ring { width: 100px; height: 100px; }
+            .click-prompt__text { font-size: 11px; letter-spacing: 3px; }
+            .zyron-overlay { padding-bottom: 5vh; }
+        }
+    </style>
 </head>
-<body></body>
+<body>
+
+    <!-- Zyron Animation Canvas -->
+    <canvas id="zyronCanvas"></canvas>
+
+    <!-- ZYRON Name Overlay (over the orb) -->
+    <div class="zyron-name-overlay" id="zyron-name-overlay">
+        <div class="zyron-name-text" id="zyronText">
+            <span>Z</span><span>Y</span><span>R</span><span>O</span><span>N</span>
+        </div>
+        <div class="zyron-subtitle" id="zyronSub">ARTIFICIAL INTELLIGENCE</div>
+    </div>
+
+    <!-- Click anywhere to begin (invisible layer + subtle hint below orb) -->
+    <div class="click-layer" id="click-layer"></div>
+    <div class="orb-hint" id="orb-hint">tap to wake up<br><span>zyron</span></div>
+
+    <!-- Content Overlay (typed text + buttons at bottom) -->
+    <div class="zyron-overlay" id="zyron-overlay">
+        <div class="zyron-text" id="zyron-text"></div>
+        <div class="choices" id="choices">
+            <a class="choice-btn choice-btn--classic" id="btn-classic" href="classic/index.html">
+                <span class="choice-btn__icon">◆</span>
+                <span class="choice-btn__title">PROFESSIONAL</span>
+                <span class="choice-btn__desc">Classic / Corporate</span>
+            </a>
+            <a class="choice-btn choice-btn--advanced" id="btn-advanced" href="advanced/index.html">
+                <span class="choice-btn__icon">⚡</span>
+                <span class="choice-btn__title">ADVANCED</span>
+                <span class="choice-btn__desc">Cyberpunk / AI Theme</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Skip -->
+    <button class="skip-intro" id="skip-intro">SKIP INTRO →</button>
+
+    <script>
+    (function() {
+
+        /* ════════════════════════════════════════════════════════════
+           ZYRON ANIMATION (from test/zyron animation/script.js)
+        ════════════════════════════════════════════════════════════ */
+        const canvas = document.getElementById('zyronCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height, centerX, centerY, orbRadius;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+            orbRadius = Math.min(width, height) * 0.22;
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+
+        // Colors
+        const PRIMARY_R = 74, PRIMARY_G = 158, PRIMARY_B = 255;
+        const GOLD_R = 240, GOLD_G = 165, GOLD_B = 0;
+        const COLORS = { primary: '#4a9eff', secondary: '#f0a500', glow: '#4a9eff' };
+
+        // Time
+        let time = 0;
+        const startTime = performance.now();
+
+        // Orb Particles (sphere)
+        const orbParticles = [];
+        const ORB_PARTICLE_COUNT = 1200;
+
+        for (let i = 0; i < ORB_PARTICLE_COUNT; i++) {
+            const phi = Math.acos(1 - 2 * (i + 0.5) / ORB_PARTICLE_COUNT);
+            const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+            const scatterAngle = Math.random() * Math.PI * 2;
+            const scatterSpeed = 1.5 + Math.random() * 4;
+            orbParticles.push({
+                phi, theta,
+                offsetX: (Math.random() - 0.5) * 3,
+                offsetY: (Math.random() - 0.5) * 3,
+                offsetZ: (Math.random() - 0.5) * 3,
+                size: 0.3 + Math.random() * 0.7,
+                baseOpacity: 0.3 + Math.random() * 0.7,
+                pulseOffset: Math.random() * Math.PI * 2,
+                connectTo: Math.random() < 0.15 ? Math.floor(Math.random() * ORB_PARTICLE_COUNT) : -1,
+                isGold: false,
+                scatterVX: Math.cos(scatterAngle) * scatterSpeed,
+                scatterVY: Math.sin(scatterAngle) * scatterSpeed,
+                scatterDelay: Math.random() * 0.5,
+            });
+        }
+
+        // Ambient particles
+        const ambientParticles = [];
+        const AMBIENT_COUNT = 120;
+
+        for (let i = 0; i < AMBIENT_COUNT; i++) {
+            const scatterAngle = Math.random() * Math.PI * 2;
+            const scatterSpeed = 1 + Math.random() * 3;
+            ambientParticles.push({
+                x: Math.random() * 2000 - 500,
+                y: Math.random() * 2000 - 500,
+                speed: 0.1 + Math.random() * 0.4,
+                angle: Math.random() * Math.PI * 2,
+                size: 0.3 + Math.random() * 0.8,
+                opacity: 0.1 + Math.random() * 0.4,
+                drift: Math.random() * 0.5 - 0.25,
+                isGold: false,
+                scatterVX: Math.cos(scatterAngle) * scatterSpeed,
+                scatterVY: Math.sin(scatterAngle) * scatterSpeed,
+                scatterDelay: Math.random() * 0.5,
+            });
+        }
+
+        // Ring particles
+        const RING_PARTICLE_COUNT = 600;
+        const ringParticles = [];
+
+        for (let i = 0; i < RING_PARTICLE_COUNT; i++) {
+            const scatterAngle = Math.random() * Math.PI * 2;
+            const scatterSpeed = 2 + Math.random() * 5;
+            ringParticles.push({
+                angle: (i / RING_PARTICLE_COUNT) * Math.PI * 2,
+                size: 0.2 + Math.random() * 0.8,
+                radiusOffset: (Math.random() - 0.5) * 8,
+                speed: 0.0003 + Math.random() * 0.001,
+                opacity: 0.2 + Math.random() * 0.8,
+                pulseSpeed: 1 + Math.random() * 3,
+                pulseOffset: Math.random() * Math.PI * 2,
+                scatterVX: Math.cos(scatterAngle) * scatterSpeed,
+                scatterVY: Math.sin(scatterAngle) * scatterSpeed,
+                scatterDelay: Math.random() * 0.4,
+            });
+        }
+
+        // Speaking state — shared with speech system
+        let isSpeaking = false;
+
+        // Scatter state — triggered on button click
+        let scatterStartTime = null;
+        const SCATTER_DURATION = 3; // seconds
+
+        function getScatterProgress() {
+            if (!scatterStartTime) return 0;
+            const elapsed = (performance.now() - scatterStartTime) / 1000;
+            return Math.min(elapsed / SCATTER_DURATION, 1);
+        }
+
+        function getBreathScale(t) {
+            const base = 1 + 0.15 * Math.sin(t * 0.8);
+            if (isSpeaking) {
+                return base + 0.05 * Math.sin(t * 4) + 0.03 * Math.sin(t * 7);
+            }
+            return base;
+        }
+
+        function drawBackground() {
+            const bg = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, Math.max(width, height) * 0.7);
+            bg.addColorStop(0, '#0a1020');
+            bg.addColorStop(0.5, '#060b18');
+            bg.addColorStop(1, '#030710');
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        function drawOrb(t) {
+            const elapsed = (performance.now() - startTime) / 1000;
+            const fadeIn = Math.min(elapsed / 2, 1);
+            const scatter = getScatterProgress();
+            const scatterFade = 1 - scatter;
+            const breathScale = getBreathScale(t);
+            const currentRadius = orbRadius * breathScale;
+            const rotationY = t * 0.25;
+            const rotationX = t * 0.15;
+
+            // Glow behind orb
+            if (scatterFade > 0.01) {
+                const glowRadius = currentRadius * 2.5;
+                const glowAlpha = isSpeaking ? 0.3 : 0.2;
+                const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, glowRadius);
+                gradient.addColorStop(0, `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${glowAlpha * fadeIn * scatterFade})`);
+                gradient.addColorStop(0.3, `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${glowAlpha * 0.5 * fadeIn * scatterFade})`);
+                gradient.addColorStop(0.6, `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${0.03 * fadeIn * scatterFade})`);
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, glowRadius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Project particles
+            const projected = [];
+
+            orbParticles.forEach((p, idx) => {
+                let x = Math.sin(p.phi) * Math.cos(p.theta) * currentRadius + p.offsetX;
+                let y = Math.cos(p.phi) * currentRadius + p.offsetY;
+                let z = Math.sin(p.phi) * Math.sin(p.theta) * currentRadius + p.offsetZ;
+
+                const cosY = Math.cos(rotationY), sinY = Math.sin(rotationY);
+                const x2 = x * cosY - z * sinY;
+                const z2 = x * sinY + z * cosY;
+
+                const cosX = Math.cos(rotationX), sinX = Math.sin(rotationX);
+                const y2 = y * cosX - z2 * sinX;
+                const z3 = y * sinX + z2 * cosX;
+
+                const depthFactor = (z3 + currentRadius) / (currentRadius * 2);
+                const pulseSpeed = isSpeaking ? 3.5 : 2;
+                const pulse = 0.6 + 0.4 * Math.sin(t * pulseSpeed + p.pulseOffset);
+
+                let px = centerX + x2;
+                let py = centerY + y2;
+                let particleAlpha;
+
+                if (scatter > 0) {
+                    const ps = Math.max(0, (scatter - p.scatterDelay) / (1 - p.scatterDelay));
+                    const eased = ps * ps;
+                    const dist = eased * Math.max(width, height) * 0.8;
+                    px += p.scatterVX * dist;
+                    py += p.scatterVY * dist;
+                    particleAlpha = p.baseOpacity * fadeIn * depthFactor * pulse * (1 - ps);
+                } else {
+                    particleAlpha = p.baseOpacity * fadeIn * depthFactor * pulse;
+                }
+
+                if (particleAlpha < 0.005) return;
+
+                const sz = p.size * (0.5 + depthFactor * 0.8);
+                projected.push({ px, py, alpha: particleAlpha, sz, depthFactor, idx });
+
+                const r = p.isGold ? GOLD_R : PRIMARY_R;
+                const g = p.isGold ? GOLD_G : PRIMARY_G;
+                const b = p.isGold ? GOLD_B : PRIMARY_B;
+
+                ctx.beginPath();
+                ctx.arc(px, py, sz, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${particleAlpha})`;
+                ctx.shadowColor = p.isGold ? COLORS.secondary : COLORS.primary;
+                ctx.shadowBlur = 6 * depthFactor;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+
+            // Connection lines (fade early during scatter)
+            if (scatter < 0.5) {
+                const lineFade = scatter < 0.3 ? 1 : 1 - (scatter - 0.3) / 0.2;
+                ctx.lineWidth = 0.4;
+                orbParticles.forEach((p, i) => {
+                    if (p.connectTo >= 0 && p.connectTo < projected.length) {
+                        const a = projected[i];
+                        const b = projected[p.connectTo];
+                        if (a && b) {
+                            const dist = Math.hypot(a.px - b.px, a.py - b.py);
+                            if (dist < currentRadius * 0.8) {
+                                const lineAlpha = Math.min(a.alpha, b.alpha) * 0.4 * lineFade;
+                                ctx.beginPath();
+                                ctx.moveTo(a.px, a.py);
+                                ctx.lineTo(b.px, b.py);
+                                ctx.strokeStyle = `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${lineAlpha})`;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Inner core glow
+            if (scatterFade > 0.01) {
+                const coreGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, currentRadius * 0.5);
+                const coreAlpha = isSpeaking ? 0.22 : 0.15;
+                coreGrad.addColorStop(0, `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${coreAlpha * fadeIn * scatterFade})`);
+                coreGrad.addColorStop(1, `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, 0)`);
+                ctx.fillStyle = coreGrad;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, currentRadius * 0.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function drawEnergyRing(t) {
+            const elapsed = (performance.now() - startTime) / 1000;
+            const fadeIn = Math.min(Math.max((elapsed - 0.8) / 2, 0), 1);
+            const scatter = getScatterProgress();
+
+            if (scatter >= 1) return;
+
+            const scatterFade = 1 - scatter;
+            const breathScale = getBreathScale(t);
+            const ringRadius = orbRadius * 1.6 * breathScale;
+
+            const sweepSpeed = isSpeaking ? 1.0 : 0.5;
+            const sweepAngle = t * sweepSpeed;
+            const sweepLength = Math.PI * 0.6;
+
+            // Ring structure (fades with scatter)
+            if (scatterFade > 0.05) {
+                // Outer glow ring
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, ringRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${0.08 * fadeIn * scatterFade})`;
+                ctx.lineWidth = 25;
+                ctx.shadowColor = COLORS.primary;
+                ctx.shadowBlur = 40 * fadeIn * scatterFade;
+                ctx.stroke();
+                ctx.restore();
+
+                // Main ring line
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, ringRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${0.3 * fadeIn * scatterFade})`;
+                ctx.lineWidth = 2;
+                ctx.shadowColor = COLORS.primary;
+                ctx.shadowBlur = 15 * fadeIn * scatterFade;
+                ctx.stroke();
+                ctx.restore();
+
+                // Bright arc sweep
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, ringRadius, sweepAngle, sweepAngle + sweepLength);
+                const sweepAlpha = isSpeaking ? 0.8 : 0.6;
+                ctx.strokeStyle = `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${sweepAlpha * fadeIn * scatterFade})`;
+                ctx.lineWidth = 3.5;
+                ctx.shadowColor = COLORS.primary;
+                ctx.shadowBlur = 30 * fadeIn * scatterFade;
+                ctx.stroke();
+                ctx.restore();
+
+                // Second sweep
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, ringRadius, sweepAngle + Math.PI, sweepAngle + Math.PI + sweepLength * 0.4);
+                ctx.strokeStyle = `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${0.25 * fadeIn * scatterFade})`;
+                ctx.lineWidth = 2.5;
+                ctx.shadowColor = COLORS.primary;
+                ctx.shadowBlur = 20 * fadeIn * scatterFade;
+                ctx.stroke();
+                ctx.restore();
+
+                // Inner ripple ring
+                const rippleRadius = ringRadius - 6;
+                const rippleSpeed = isSpeaking ? 3.5 : 2;
+                const ripplePhase = t * rippleSpeed;
+                ctx.save();
+                ctx.beginPath();
+                for (let i = 0; i <= 200; i++) {
+                    const a = (i / 200) * Math.PI * 2;
+                    const waveAmp = isSpeaking ? 4 : 2.5;
+                    const wave = Math.sin(a * 12 + ripplePhase) * waveAmp * fadeIn;
+                    const rx = centerX + Math.cos(a) * (rippleRadius + wave);
+                    const ry = centerY + Math.sin(a) * (rippleRadius + wave);
+                    if (i === 0) ctx.moveTo(rx, ry);
+                    else ctx.lineTo(rx, ry);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${0.15 * fadeIn * scatterFade})`;
+                ctx.lineWidth = 1;
+                ctx.shadowColor = COLORS.primary;
+                ctx.shadowBlur = 8;
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            // Ring particles (scatter individually)
+            ringParticles.forEach(p => {
+                p.angle += p.speed * (isSpeaking ? 2 : 1);
+                const a = p.angle + t * 0.15;
+                const r = ringRadius + p.radiusOffset;
+                let px = centerX + Math.cos(a) * r;
+                let py = centerY + Math.sin(a) * r;
+
+                const pulse = 0.3 + 0.7 * Math.sin(t * p.pulseSpeed + p.pulseOffset);
+                let alpha = p.opacity * fadeIn * pulse;
+
+                if (scatter > 0) {
+                    const ps = Math.max(0, (scatter - p.scatterDelay) / (1 - p.scatterDelay));
+                    const eased = ps * ps;
+                    const dist = eased * Math.max(width, height) * 0.8;
+                    px += p.scatterVX * dist;
+                    py += p.scatterVY * dist;
+                    alpha *= (1 - ps);
+                }
+
+                if (alpha < 0.005) return;
+
+                const angleDiff = Math.abs(((a - sweepAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2));
+                const sweepBoost = angleDiff < sweepLength ? 1.5 : 1;
+
+                ctx.beginPath();
+                ctx.arc(px, py, p.size * (0.5 + pulse * 0.5), 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${PRIMARY_R}, ${PRIMARY_G}, ${PRIMARY_B}, ${Math.min(alpha * sweepBoost, 1)})`;
+                ctx.shadowColor = COLORS.primary;
+                ctx.shadowBlur = 4;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+        }
+
+        function drawAmbientParticles(t) {
+            const elapsed = (performance.now() - startTime) / 1000;
+            const fadeIn = Math.min(Math.max((elapsed - 1) / 2, 0), 1);
+            const scatter = getScatterProgress();
+
+            ambientParticles.forEach(p => {
+                p.angle += p.speed * 0.005;
+                let x = centerX + Math.cos(p.angle) * (orbRadius * 2.5 + p.x * 0.3);
+                let y = centerY + Math.sin(p.angle) * (orbRadius * 2 + p.y * 0.3);
+
+                const pulse = 0.5 + 0.5 * Math.sin(t * 1.5 + p.angle * 3);
+                let alpha = p.opacity * fadeIn * (0.3 + 0.7 * pulse);
+
+                if (scatter > 0) {
+                    const ps = Math.max(0, (scatter - p.scatterDelay) / (1 - p.scatterDelay));
+                    const eased = ps * ps;
+                    const dist = eased * Math.max(width, height) * 0.6;
+                    x += p.scatterVX * dist;
+                    y += p.scatterVY * dist;
+                    alpha *= (1 - ps);
+                }
+
+                if (alpha < 0.005) return;
+
+                const r = p.isGold ? GOLD_R : PRIMARY_R;
+                const g = p.isGold ? GOLD_G : PRIMARY_G;
+                const b = p.isGold ? GOLD_B : PRIMARY_B;
+
+                ctx.beginPath();
+                ctx.arc(x, y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                ctx.shadowColor = p.isGold ? COLORS.secondary : COLORS.primary;
+                ctx.shadowBlur = 6;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+        }
+
+        function drawScanLines() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+            for (let y = 0; y < height; y += 3) {
+                ctx.fillRect(0, y, width, 1);
+            }
+        }
+
+        // ZYRON text reveal
+        let textRevealed = false;
+        function checkTextReveal() {
+            const elapsed = (performance.now() - startTime) / 1000;
+            if (!textRevealed && elapsed > 5) {
+                textRevealed = true;
+                document.getElementById('zyronText').classList.add('revealed');
+            }
+        }
+
+        // Scatter destination URL
+        let scatterDestination = null;
+
+        function triggerScatter(url) {
+            if (scatterStartTime) return; // already scattering
+            scatterStartTime = performance.now();
+            scatterDestination = url;
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+
+            // Fade out the text overlay
+            const zyronOverlay = document.getElementById('zyron-overlay');
+            zyronOverlay.style.transition = 'opacity 1.5s ease-out';
+            zyronOverlay.style.opacity = '0';
+            zyronOverlay.style.pointerEvents = 'none';
+
+            // Hide skip button
+            document.getElementById('skip-intro').style.display = 'none';
+        }
+
+        // Animation loop
+        function animate() {
+            time += 0.016;
+            const scatter = getScatterProgress();
+
+            // Redirect after scatter completes
+            if (scatter >= 1) {
+                ctx.clearRect(0, 0, width, height);
+                drawBackground();
+                if (scatterDestination) {
+                    window.location.href = scatterDestination;
+                }
+                return;
+            }
+
+            ctx.clearRect(0, 0, width, height);
+            drawBackground();
+            drawAmbientParticles(time);
+            drawEnergyRing(time);
+            drawOrb(time);
+            drawScanLines();
+            checkTextReveal();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        /* ════════════════════════════════════
+           SPEECH SYNTHESIS
+        ════════════════════════════════════ */
+        function ensureVoicesLoaded() {
+            return new Promise((resolve) => {
+                const voices = window.speechSynthesis.getVoices();
+                if (voices.length > 0) { resolve(voices); return; }
+                window.speechSynthesis.onvoiceschanged = () => {
+                    resolve(window.speechSynthesis.getVoices());
+                };
+                setTimeout(() => resolve(window.speechSynthesis.getVoices()), 1000);
+            });
+        }
+
+        function getVoice(voices) {
+            const preferred = ['Google UK English Male', 'Microsoft David', 'Daniel', 'Google US English', 'Alex'];
+            for (const name of preferred) {
+                const v = voices.find(v => v.name.includes(name));
+                if (v) return v;
+            }
+            const english = voices.find(v => v.lang.startsWith('en'));
+            return english || voices[0] || null;
+        }
+
+        let selectedVoice = null;
+
+        async function warmUpSpeech() {
+            const voices = await ensureVoicesLoaded();
+            selectedVoice = getVoice(voices);
+            // Speak a real short word silently to fully prime the engine
+            await new Promise((resolve) => {
+                const warmup = new SpeechSynthesisUtterance('ready');
+                warmup.volume = 0.01;
+                if (selectedVoice) warmup.voice = selectedVoice;
+                warmup.rate = 2;
+                let resolved = false;
+                warmup.onend = () => { if (!resolved) { resolved = true; resolve(); } };
+                warmup.onerror = () => { if (!resolved) { resolved = true; resolve(); } };
+                window.speechSynthesis.speak(warmup);
+                setTimeout(() => { if (!resolved) { resolved = true; resolve(); } }, 1500);
+            });
+            // Extra buffer after warm-up
+            await delay(300);
+        }
+
+        function speak(text) {
+            return new Promise((resolve) => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                if (selectedVoice) utterance.voice = selectedVoice;
+                utterance.pitch = 0.85;
+                utterance.rate = 0.9;
+                utterance.onstart = () => { isSpeaking = true; };
+                utterance.onend = () => { isSpeaking = false; resolve(); };
+                utterance.onerror = () => { isSpeaking = false; resolve(); };
+                window.speechSynthesis.speak(utterance);
+            });
+        }
+
+        /* ════════════════════════════════════
+           TYPING EFFECT
+        ════════════════════════════════════ */
+        const textEl = document.getElementById('zyron-text');
+
+        function typeText(text, highlightWords) {
+            return new Promise((resolve) => {
+                const lineEl = document.createElement('div');
+                lineEl.className = 'zyron-line';
+                textEl.appendChild(lineEl);
+
+                const cursorEl = document.createElement('span');
+                cursorEl.className = 'cursor';
+
+                let i = 0;
+                const speed = 40;
+
+                function typeChar() {
+                    if (i < text.length) {
+                        if (cursorEl.parentNode) cursorEl.remove();
+
+                        let highlighted = false;
+                        if (highlightWords) {
+                            for (const word of highlightWords) {
+                                if (text.substring(i, i + word.length) === word) {
+                                    const span = document.createElement('span');
+                                    span.className = 'highlight';
+                                    span.textContent = word;
+                                    lineEl.appendChild(span);
+                                    i += word.length;
+                                    highlighted = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!highlighted) {
+                            lineEl.appendChild(document.createTextNode(text[i]));
+                            i++;
+                        }
+                        lineEl.appendChild(cursorEl);
+                        setTimeout(typeChar, speed);
+                    } else {
+                        resolve();
+                    }
+                }
+                typeChar();
+            });
+        }
+
+        /* ════════════════════════════════════
+           MAIN SEQUENCE
+        ════════════════════════════════════ */
+        const clickLayer = document.getElementById('click-layer');
+        const orbHint = document.getElementById('orb-hint');
+        const overlay = document.getElementById('zyron-overlay');
+        const nameOverlay = document.getElementById('zyron-name-overlay');
+        const zyronTextEl = document.getElementById('zyronText');
+        const zyronSubEl = document.getElementById('zyronSub');
+        const btnClassic = document.getElementById('btn-classic');
+        const btnAdvanced = document.getElementById('btn-advanced');
+        const skipBtn = document.getElementById('skip-intro');
+        let sequenceRunning = false;
+
+        async function runSequence() {
+            if (sequenceRunning) return;
+            sequenceRunning = true;
+
+            // Hide click layer & hint
+            clickLayer.classList.add('hidden');
+            orbHint.classList.add('hidden');
+
+            // Show ZYRON name with glitch reveal
+            nameOverlay.classList.add('active');
+            zyronTextEl.classList.add('reveal');
+            zyronSubEl.classList.add('reveal');
+
+            // Warm up speech while name animates
+            await warmUpSpeech();
+            await delay(2000);
+
+            // Fade out ZYRON name, show typed text overlay
+            nameOverlay.style.transition = 'opacity 1s ease';
+            nameOverlay.style.opacity = '0';
+            await delay(1000);
+            nameOverlay.style.display = 'none';
+            overlay.classList.add('active');
+            await delay(500);
+
+            // Line 1: Welcome
+            await speakAndType("Welcome to my master Thusharkanth's portfolio.", ["Thusharkanth"]);
+            await delay(500);
+
+            // Line 2: I am ZYRON
+            await speakAndType("I am ZYRON.", ["ZYRON"]);
+            await delay(500);
+
+            // Line 3: Two ways
+            await speakAndType("You may experience my master's portfolio in two ways:", null);
+            await delay(500);
+
+            // Line 4: Professional view — show classic button when "Professional" is spoken
+            const line4promise = speak("a Professional view, or an Advanced Cyberpunk view.");
+            const type4promise = typeText("a Professional view, or an Advanced Cyberpunk view.", ["Professional", "Advanced Cyberpunk"]);
+            // Show Professional button after a short delay (when the word is being said)
+            await delay(600);
+            btnClassic.classList.add('visible');
+            // Show Advanced button when "Advanced Cyberpunk" part is reached
+            await delay(1800);
+            btnAdvanced.classList.add('visible');
+            await Promise.all([line4promise, type4promise]);
+            await delay(500);
+
+            // Line 5: Which shall we begin with?
+            await speakAndType("Which shall we begin with?", null);
+
+            // Remove all cursors
+            textEl.querySelectorAll('.cursor').forEach(c => c.remove());
+        }
+
+        async function speakAndType(text, highlights) {
+            const speakPromise = speak(text);
+            const typePromise = typeText(text, highlights);
+            await Promise.all([speakPromise, typePromise]);
+        }
+
+        function skipIntro() {
+            sequenceRunning = true;
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+
+            clickLayer.classList.add('hidden');
+            orbHint.classList.add('hidden');
+            nameOverlay.style.display = 'none';
+            overlay.classList.add('active');
+            textEl.innerHTML = '';
+
+            const lines = [
+                { text: "Welcome to my master Thusharkanth's portfolio.", highlights: ["Thusharkanth"] },
+                { text: "I am ZYRON.", highlights: ["ZYRON"] },
+                { text: "You may experience my master's portfolio in two ways:", highlights: null },
+                { text: "a Professional view, or an Advanced Cyberpunk view.", highlights: ["Professional", "Advanced Cyberpunk"] },
+                { text: "Which shall we begin with?", highlights: null }
+            ];
+
+            lines.forEach(line => {
+                const div = document.createElement('div');
+                div.className = 'zyron-line';
+                if (line.highlights) {
+                    let remaining = line.text;
+                    line.highlights.forEach(word => {
+                        const idx = remaining.indexOf(word);
+                        if (idx > 0) div.appendChild(document.createTextNode(remaining.substring(0, idx)));
+                        const span = document.createElement('span');
+                        span.className = 'highlight';
+                        span.textContent = word;
+                        div.appendChild(span);
+                        remaining = remaining.substring(idx + word.length);
+                    });
+                    if (remaining) div.appendChild(document.createTextNode(remaining));
+                } else {
+                    div.textContent = line.text;
+                }
+                textEl.appendChild(div);
+            });
+
+            btnClassic.classList.add('visible');
+            btnAdvanced.classList.add('visible');
+        }
+
+        function delay(ms) {
+            return new Promise(r => setTimeout(r, ms));
+        }
+
+        // Pre-load voices
+        if (window.speechSynthesis) {
+            window.speechSynthesis.getVoices();
+        }
+
+        // Events — click anywhere on the page to start
+        clickLayer.addEventListener('click', runSequence);
+        skipBtn.addEventListener('click', skipIntro);
+
+        // Intercept button clicks — trigger scatter, then redirect
+        btnClassic.addEventListener('click', function(e) {
+            e.preventDefault();
+            triggerScatter(this.href);
+        });
+        btnAdvanced.addEventListener('click', function(e) {
+            e.preventDefault();
+            triggerScatter(this.href);
+        });
+
+    })();
+    </script>
+</body>
 </html>
